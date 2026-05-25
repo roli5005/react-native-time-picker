@@ -1,9 +1,14 @@
 import { View, type ColorValue, type ViewProps } from 'react-native';
 
 type Props = ViewProps & {
-  color?: ColorValue;
+  value?: Date;
+  minuteInterval?: number;
+  locale?: string;
+  textColor?: ColorValue;
+  fontSize?: number;
+  onValueChange?: (date: Date) => void;
 };
 
-export function TimePickerView({ color, style, ...rest }: Props) {
-  return <View {...rest} style={[style, { backgroundColor: color }]} />;
+export function TimePickerView({ style, ...rest }: Props) {
+  return <View {...rest} style={style} />;
 }

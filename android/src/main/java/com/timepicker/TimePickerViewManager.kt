@@ -1,6 +1,5 @@
 package com.timepicker
 
-import android.graphics.Color
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -12,28 +11,38 @@ import com.facebook.react.viewmanagers.TimePickerViewManagerDelegate
 @ReactModule(name = TimePickerViewManager.NAME)
 class TimePickerViewManager : SimpleViewManager<TimePickerView>(),
   TimePickerViewManagerInterface<TimePickerView> {
-  private val mDelegate: ViewManagerDelegate<TimePickerView>
 
-  init {
-    mDelegate = TimePickerViewManagerDelegate(this)
+  private val mDelegate = TimePickerViewManagerDelegate(this)
+
+  override fun getDelegate(): ViewManagerDelegate<TimePickerView> = mDelegate
+  override fun getName(): String = NAME
+  override fun createViewInstance(context: ThemedReactContext): TimePickerView = TimePickerView(context)
+
+  @ReactProp(name = "value", defaultDouble = 0.0)
+  override fun setValue(view: TimePickerView, value: Double) {
+    if (value > 0) view.setValue(value)
   }
 
-  override fun getDelegate(): ViewManagerDelegate<TimePickerView>? {
-    return mDelegate
+  @ReactProp(name = "minuteInterval", defaultInt = 1)
+  override fun setMinuteInterval(view: TimePickerView, value: Int) {
+    view.setMinuteInterval(value)
   }
 
-  override fun getName(): String {
-    return NAME
+  @ReactProp(name = "locale")
+  override fun setLocale(view: TimePickerView, value: String?) {
+    view.setLocale(value ?: "")
   }
 
-  public override fun createViewInstance(context: ThemedReactContext): TimePickerView {
-    return TimePickerView(context)
+  @ReactProp(name = "textColor", customType = "Color")
+  override fun setTextColor(view: TimePickerView, value: Int?) {
+    value?.let { view.setTextColor(it) }
   }
 
-  @ReactProp(name = "color")
-  override fun setColor(view: TimePickerView?, color: Int?) {
-    view?.setBackgroundColor(color ?: Color.TRANSPARENT)
+  @ReactProp(name = "fontSize", defaultFloat = 0f)
+  override fun setFontSize(view: TimePickerView, value: Float) {
+    if (value > 0f) view.setFontSize(value)
   }
+
 
   companion object {
     const val NAME = "TimePickerView"

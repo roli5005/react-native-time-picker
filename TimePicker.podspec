@@ -14,7 +14,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/roli5005/react-native-time-picker.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift,cpp}"
-  s.private_header_files = "ios/**/*.h"
+  s.private_header_files = "ios/TimePickerView.h"
+  s.swift_version = "5.0"
 
   install_modules_dependencies(s)
 end
