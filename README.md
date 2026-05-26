@@ -14,7 +14,7 @@ A React Native library providing native time picker components for iOS and Andro
 ## Installation
 
 ```sh
-npm install react-native-time-picker
+npm install @roli5005/react-native-time-picker
 ```
 
 ### iOS
