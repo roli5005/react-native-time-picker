@@ -1,5 +1,5 @@
 #import "TimePickerSwiftViewWrapper.h"
-#import "TimePicker-Swift.h"
+#import <TimePicker/TimePicker-Swift.h>
 
 @implementation TimePickerSwiftViewWrapper {
     TimePickerViewBridge *_bridge;
