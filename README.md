@@ -30,7 +30,7 @@ No extra steps required.
 ## Usage
 
 ```tsx
-import { TimePickerView } from 'react-native-time-picker';
+import { TimePickerView } from '@roli5005/react-native-time-picker';
 
 export default function App() {
   const [time, setTime] = React.useState(new Date());
